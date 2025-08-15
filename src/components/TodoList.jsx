@@ -1,31 +1,15 @@
 import React from "react";
 import TodoItem from "./TodoItem";
 
-export default function TodoList({
-  tasks,
-  onToggleComplete,
-  onDelete,
-  onEdit,
-  editIndex,
-  setEditIndex,
-}) {
-  if (tasks.length === 0) {
-    return <p>Список завдань пустий</p>;
+export default function TodoList({ tasks }) {
+  if (!tasks || tasks.length === 0) {
+    return null; 
   }
 
   return (
     <ul className="list-group">
       {tasks.map((task, index) => (
-        <TodoItem
-          key={index}
-          task={task}
-          index={index}
-          onToggleComplete={onToggleComplete}
-          onDelete={onDelete}
-          onEdit={onEdit}
-          editIndex={editIndex}
-          setEditIndex={setEditIndex}
-        />
+        <TodoItem key={index} task={task} />
       ))}
     </ul>
   );

@@ -1,14 +1,18 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { validateTodo } from "../validators/todoForm"; 
+import { useDispatch } from "react-redux";
+import { addTask } from "../store/todoSlice";
+import { validateTodo } from "../validators/todoForm";
 
-export default function TodoForm({ onAddTask }) {
+export default function TodoForm() {
+  const dispatch = useDispatch();
+
   return (
     <Formik
       initialValues={{ text: "" }}
-      validate={validateTodo} 
+      validate={validateTodo}
       onSubmit={(values, { resetForm }) => {
-        onAddTask(values.text);
+        dispatch(addTask(values.text));
         resetForm();
       }}
     >
