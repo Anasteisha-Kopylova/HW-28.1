@@ -1,16 +1,12 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { validateTodo } from "../validators/todoForm"; 
 
 export default function TodoForm({ onAddTask }) {
   return (
     <Formik
       initialValues={{ text: "" }}
-      validate={(values) => {
-        const errors = {};
-        if (!values.text) errors.text = "Обов’язкове поле";
-        else if (values.text.length < 5) errors.text = "Має бути не менше 5 символів";
-        return errors;
-      }}
+      validate={validateTodo} 
       onSubmit={(values, { resetForm }) => {
         onAddTask(values.text);
         resetForm();
@@ -21,7 +17,9 @@ export default function TodoForm({ onAddTask }) {
           className="d-flex mb-3"
           style={{ maxWidth: "600px", marginBottom: "1rem" }}
         >
-          <div style={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
+          <div
+            style={{ flexGrow: 1, display: "flex", flexDirection: "column" }}
+          >
             <Field
               name="text"
               className="form-control"
@@ -36,7 +34,6 @@ export default function TodoForm({ onAddTask }) {
             />
           </div>
 
-          {/* Кнопка справа */}
           <button
             type="submit"
             className="btn btn-primary ms-2"
