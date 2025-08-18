@@ -1,8 +1,8 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
-import { addTask } from "../store/todoSlice";
-import { validateTodo } from "../validators/todoForm";
+import { addStart } from "../store/todoSlice";
+import { validateTodo } from "../validators/todoForm"; 
 
 export default function TodoForm() {
   const dispatch = useDispatch();
@@ -10,42 +10,27 @@ export default function TodoForm() {
   return (
     <Formik
       initialValues={{ text: "" }}
-      validate={validateTodo}
+      validate={validateTodo} 
       onSubmit={(values, { resetForm }) => {
-        dispatch(addTask(values.text));
+        dispatch(addStart({ text: values.text, completed: false }));
         resetForm();
       }}
     >
-      {({ isSubmitting }) => (
-        <Form
-          className="d-flex mb-3"
-          style={{ maxWidth: "600px", marginBottom: "1rem" }}
-        >
-          <div
-            style={{ flexGrow: 1, display: "flex", flexDirection: "column" }}
-          >
+      {() => (
+        <Form>
+          <div className="input-group mb-3">
             <Field
               name="text"
+              type="text"
               className="form-control"
-              placeholder="Введіть завдання"
-              autoComplete="off"
+              placeholder="Add new task"
+              id="taskInput"
             />
-            <ErrorMessage
-              name="text"
-              component="div"
-              className="text-danger mt-1"
-              style={{ fontSize: "0.875rem" }}
-            />
+            <button type="submit" className="btn btn-primary">
+              Add
+            </button>
           </div>
-
-          <button
-            type="submit"
-            className="btn btn-primary ms-2"
-            disabled={isSubmitting}
-            style={{ whiteSpace: "nowrap" }}
-          >
-            Додати
-          </button>
+          <ErrorMessage name="text" component="div" className="text-danger" />
         </Form>
       )}
     </Formik>
