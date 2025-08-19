@@ -1,8 +1,8 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
-import { addStart } from "../store/todoSlice";
-import { validateTodo } from "../validators/todoForm"; 
+import { addStart } from "../redux/todoSlice";
+import { validateTodo } from "../validators/todoForm";
 
 export default function TodoForm() {
   const dispatch = useDispatch();
@@ -10,7 +10,7 @@ export default function TodoForm() {
   return (
     <Formik
       initialValues={{ text: "" }}
-      validate={validateTodo} 
+      validate={validateTodo}
       onSubmit={(values, { resetForm }) => {
         dispatch(addStart({ text: values.text, completed: false }));
         resetForm();

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteStart, toggleStart, editStart } from "../store/todoSlice";
+import { deleteStart, toggleStart, editStart } from "../redux/todoSlice";
 
 export default function TodoItem({ task }) {
   const dispatch = useDispatch();

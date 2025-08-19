@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { deleteStart, toggleStart } from "../store/todoSlice";
+import { deleteStart, toggleStart } from "../redux/todoSlice";
 
 export default function TodoActions({ task }) {
   const dispatch = useDispatch();

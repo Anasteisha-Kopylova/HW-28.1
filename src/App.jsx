@@ -2,7 +2,13 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
-import { fetchStart, addStart, deleteStart, toggleStart, editStart } from "./store/todoSlice";
+import {
+  fetchStart,
+  addStart,
+  deleteStart,
+  toggleStart,
+  editStart,
+} from "./redux/todoSlice";
 
 export default function App() {
   const { tasks, error } = useSelector((state) => state.todos);
