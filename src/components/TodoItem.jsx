@@ -23,7 +23,6 @@ export default function TodoItem({ task }) {
 
   return (
     <li className="list-group-item d-flex align-items-center justify-content-between">
-      {/* Чекбокс для completed */}
       <input
         type="checkbox"
         className="form-check-input me-2"
